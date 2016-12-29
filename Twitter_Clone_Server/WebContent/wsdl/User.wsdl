@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://services" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://services" xmlns:intf="http://services" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://services" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="register">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="firstname" type="xsd:string"/>
+      <element name="lastname" type="xsd:string"/>
+      <element name="gender" type="xsd:string"/>
+      <element name="dob" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registerResponse">
+    <complexType>
+     <sequence>
+      <element name="registerReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tweet">
+    <complexType>
+     <sequence>
+      <element name="tweet" type="xsd:string"/>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="tweetResponse">
+    <complexType>
+     <sequence>
+      <element name="tweetReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retweet">
+    <complexType>
+     <sequence>
+      <element name="retweetText" type="xsd:string"/>
+      <element name="userid" type="xsd:int"/>
+      <element name="tweetId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="retweetResponse">
+    <complexType>
+     <sequence>
+      <element name="retweetReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followUser">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followUserResponse">
+    <complexType>
+     <sequence>
+      <element name="followUserReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followUserMainPage">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followUserMainPageResponse">
+    <complexType>
+     <sequence>
+      <element name="followUserMainPageReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followUserDetails">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="id" type="xsd:int"/>
+      <element name="fId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followUserDetailsResponse">
+    <complexType>
+     <sequence>
+      <element name="followUserDetailsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="hashtagtweets">
+    <complexType>
+     <sequence>
+      <element name="search" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="hashtagtweetsResponse">
+    <complexType>
+     <sequence>
+      <element name="hashtagtweetsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followingList">
+    <complexType>
+     <sequence>
+      <element name="user_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followingListResponse">
+    <complexType>
+     <sequence>
+      <element name="followingListReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followersList">
+    <complexType>
+     <sequence>
+      <element name="user_id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="followersListResponse">
+    <complexType>
+     <sequence>
+      <element name="followersListReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="profileupdate">
+    <complexType>
+     <sequence>
+      <element name="user_id" type="xsd:int"/>
+      <element name="location" type="xsd:string"/>
+      <element name="phonenumber" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="profileupdateResponse">
+    <complexType>
+     <sequence>
+      <element name="profileupdateReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="showtweets">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="showtweetsResponse">
+    <complexType>
+     <sequence>
+      <element name="showtweetsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="followersListRequest">
+
+      <wsdl:part element="impl:followersList" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="profileupdateRequest">
+
+      <wsdl:part element="impl:profileupdate" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followUserMainPageRequest">
+
+      <wsdl:part element="impl:followUserMainPage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followUserMainPageResponse">
+
+      <wsdl:part element="impl:followUserMainPageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="hashtagtweetsResponse">
+
+      <wsdl:part element="impl:hashtagtweetsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followersListResponse">
+
+      <wsdl:part element="impl:followersListResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followUserRequest">
+
+      <wsdl:part element="impl:followUser" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followingListRequest">
+
+      <wsdl:part element="impl:followingList" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retweetRequest">
+
+      <wsdl:part element="impl:retweet" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followUserDetailsResponse">
+
+      <wsdl:part element="impl:followUserDetailsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registerRequest">
+
+      <wsdl:part element="impl:register" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="showtweetsResponse">
+
+      <wsdl:part element="impl:showtweetsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registerResponse">
+
+      <wsdl:part element="impl:registerResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="showtweetsRequest">
+
+      <wsdl:part element="impl:showtweets" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="profileupdateResponse">
+
+      <wsdl:part element="impl:profileupdateResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tweetRequest">
+
+      <wsdl:part element="impl:tweet" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="hashtagtweetsRequest">
+
+      <wsdl:part element="impl:hashtagtweets" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="tweetResponse">
+
+      <wsdl:part element="impl:tweetResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followUserDetailsRequest">
+
+      <wsdl:part element="impl:followUserDetails" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="retweetResponse">
+
+      <wsdl:part element="impl:retweetResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followingListResponse">
+
+      <wsdl:part element="impl:followingListResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="followUserResponse">
+
+      <wsdl:part element="impl:followUserResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="User">
+
+      <wsdl:operation name="register">
+
+         <wsdl:input message="impl:registerRequest" name="registerRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registerResponse" name="registerResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tweet">
+
+         <wsdl:input message="impl:tweetRequest" name="tweetRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:tweetResponse" name="tweetResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retweet">
+
+         <wsdl:input message="impl:retweetRequest" name="retweetRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:retweetResponse" name="retweetResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followUser">
+
+         <wsdl:input message="impl:followUserRequest" name="followUserRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:followUserResponse" name="followUserResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followUserMainPage">
+
+         <wsdl:input message="impl:followUserMainPageRequest" name="followUserMainPageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:followUserMainPageResponse" name="followUserMainPageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followUserDetails">
+
+         <wsdl:input message="impl:followUserDetailsRequest" name="followUserDetailsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:followUserDetailsResponse" name="followUserDetailsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hashtagtweets">
+
+         <wsdl:input message="impl:hashtagtweetsRequest" name="hashtagtweetsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:hashtagtweetsResponse" name="hashtagtweetsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followingList">
+
+         <wsdl:input message="impl:followingListRequest" name="followingListRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:followingListResponse" name="followingListResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followersList">
+
+         <wsdl:input message="impl:followersListRequest" name="followersListRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:followersListResponse" name="followersListResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="profileupdate">
+
+         <wsdl:input message="impl:profileupdateRequest" name="profileupdateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:profileupdateResponse" name="profileupdateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="showtweets">
+
+         <wsdl:input message="impl:showtweetsRequest" name="showtweetsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:showtweetsResponse" name="showtweetsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UserSoapBinding" type="impl:User">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="register">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registerRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registerResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="tweet">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tweetRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tweetResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="retweet">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="retweetRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="retweetResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="followUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="followUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followUserMainPage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="followUserMainPageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="followUserMainPageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followUserDetails">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="followUserDetailsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="followUserDetailsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="hashtagtweets">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="hashtagtweetsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="hashtagtweetsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followingList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="followingListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="followingListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="followersList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="followersListRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="followersListResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="profileupdate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="profileupdateRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="profileupdateResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="showtweets">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="showtweetsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="showtweetsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserService">
+
+      <wsdl:port binding="impl:UserSoapBinding" name="User">
+
+         <wsdlsoap:address location="http://localhost:8080/Twitter/services/User"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
